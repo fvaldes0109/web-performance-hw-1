@@ -20,10 +20,30 @@ const noAttr = () => {
   };
 };
 
+const preloadCss = () => {
+  return {
+    name: "preload-css",
+    transformIndexHtml(html) {
+      return html.replace(/<\/title>/, "</title>\n<link rel='preload' href='./template-scripts.css' as='style'>");
+    }
+  };
+}
+
+const asyncJs = () => {
+  return {
+    name: "async-js",
+    transformIndexHtml(html) {
+      return html.replace(/<script/, "<script async");
+    }
+  };
+}
+
 export default defineConfig({
   plugins: [
     moduleToJs(),
     noAttr(),
+    preloadCss(),
+    asyncJs(),
     ViteImageOptimizer(),
   ],
   base: './',
@@ -37,6 +57,11 @@ export default defineConfig({
         services: path.resolve(__dirname, 'services.html'),
         // Add other pages here
       },
+      output: {
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
+        assetFileNames: '[name].[ext]',
+      }
     }
   }
 });
