@@ -44,7 +44,11 @@ export default defineConfig({
     noAttr(),
     preloadCss(),
     asyncJs(),
-    ViteImageOptimizer(),
+    ViteImageOptimizer({
+      jpg: {
+        quality: 70,
+      }
+    }),
   ],
   base: './',
   build: {
