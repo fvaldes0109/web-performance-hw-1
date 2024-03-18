@@ -43,7 +43,7 @@ export default defineConfig({
     moduleToJs(),
     noAttr(),
     preloadCss(),
-    asyncJs(),
+    // asyncJs(),
     ViteImageOptimizer(),
   ],
   base: './',
