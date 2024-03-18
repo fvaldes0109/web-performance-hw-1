@@ -33,7 +33,7 @@ const asyncJs = () => {
   return {
     name: "async-js",
     transformIndexHtml(html) {
-      return html.replace(/<script/, "<script async");
+      return html.replace(/<script type="text/, '<script async type="text');
     }
   };
 }
@@ -43,7 +43,7 @@ export default defineConfig({
     moduleToJs(),
     noAttr(),
     preloadCss(),
-    // asyncJs(),
+    asyncJs(),
     ViteImageOptimizer(),
   ],
   base: './',
